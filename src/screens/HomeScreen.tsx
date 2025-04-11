@@ -1,49 +1,81 @@
-import { View, Text, Button } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../navigation/RootNavigator';
-import { setInitialized } from '../store/slices/appSlice';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { useStyles } from '../shared/theme/useStyles';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../navigation/RootNavigator';
+import {useAppDispatch, useAppSelector} from '../store/hooks';
+import {logout} from '../store/slices/authSlice';
+import {useTheme} from '../shared/theme/ThemeContext';
 import Config from 'react-native-config';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-export default function HomeScreen({ navigation }: Props) {
+export default function HomeScreen({navigation}: Props) {
+  const theme = useTheme();
   const dispatch = useAppDispatch();
-  const isInitialized = useAppSelector(state => state.app.isInitialized);
+  const userId = useAppSelector(state => state.auth.userId);
 
-  const styles = useStyles(theme => ({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      gap: theme.spacing.lg,
-      backgroundColor: theme.colors.background,
-    },
-    text: {
-      textAlign: 'center',
-      fontSize: theme.fontSizes.lg,
-      color: theme.colors.text,
-    },
-  }));
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const handleProfilePress = () => {
+    navigation.navigate('Profile', { userId: userId || 'unknown' });
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>🚀 MccSoftRNTemplate</Text>
-      <View>
-        <Text style={styles.text}>API: {Config.API_URL}</Text>
-        <Text style={styles.text}>
-          Initialized: {isInitialized ? '✅' : '❌'}
-        </Text>
-        <Button
-          title="Toggle Init"
-          onPress={() => dispatch(setInitialized(!isInitialized))}
-        />
+    <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      <Text style={[styles.title, {color: theme.colors.text}]}>
+        🚀Welcome to {Config.APP_NAME}
+      </Text>
+
+      <View style={styles.buttonContainer}>
+        <Pressable
+          style={({pressed}) => [
+            styles.button,
+            {backgroundColor: theme.colors.primary},
+            pressed && {opacity: 0.8},
+          ]}
+          onPress={handleProfilePress}>
+          <Text style={styles.buttonText}>Go to Profile</Text>
+        </Pressable>
+
+        <Pressable
+          style={({pressed}) => [
+            styles.button,
+            {backgroundColor: theme.colors.error},
+            pressed && {opacity: 0.8},
+          ]}
+          onPress={handleLogout}>
+          <Text style={styles.buttonText}>Logout</Text>
+        </Pressable>
       </View>
-      <Button
-        title="Go to another page"
-        onPress={() => navigation.navigate('NotFound')}
-      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 32,
+  },
+  buttonContainer: {
+    gap: 16,
+  },
+  button: {
+    height: 48,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+});

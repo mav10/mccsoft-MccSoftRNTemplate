@@ -3,7 +3,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import { useAppSelector } from '../store/hooks';
+import {useAppSelector} from '../store/hooks';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -32,8 +32,8 @@ export function RootNavigator() {
       ) : (
         <Stack.Group>
           <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen 
-            name="Profile" 
+          <Stack.Screen
+            name="Profile"
             component={ProfileScreen}
             options={{
               title: 'User Profile',
@@ -41,8 +41,8 @@ export function RootNavigator() {
           />
         </Stack.Group>
       )}
-      <Stack.Screen 
-        name="NotFound" 
+      <Stack.Screen
+        name="NotFound"
         component={NotFoundScreen}
         options={{
           title: 'Page Not Found',
