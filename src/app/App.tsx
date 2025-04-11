@@ -4,6 +4,7 @@ import {ProvidersGate} from './providers.tsx';
 import {useTheme} from '../shared/theme/ThemeContext.tsx';
 import {useAppDispatch, useAppSelector} from '../store/hooks.ts';
 import {setInitialized} from '../store/slices/appSlice.ts';
+import Config from 'react-native-config';
 
 const Content = () => {
   const theme = useTheme();
@@ -17,6 +18,7 @@ const Content = () => {
       </Text>
 
       <View>
+        <Text style={[styles.text, {color: theme.text}]}>API: {Config.API_URL}</Text>
         <Text style={[styles.text, {color: theme.text}]}>
           Initialized: {isInitialized ? '✅' : '❌'}
         </Text>
