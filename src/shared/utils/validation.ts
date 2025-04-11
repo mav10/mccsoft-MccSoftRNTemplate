@@ -21,24 +21,21 @@ export type ValidationError = {
   message: string;
 };
 
-export const validateLoginForm = (data: {
-  email: string;
-  password: string;
-}): ValidationError[] => {
+export const validateLoginForm = (data: {email: string; password: string}): ValidationError[] => {
   const errors: ValidationError[] = [];
 
   if (!data.email) {
-    errors.push({ field: 'email', message: 'Email is required' });
+    errors.push({field: 'email', message: 'Email is required'});
   } else if (!isValidEmail(data.email)) {
-    errors.push({ field: 'email', message: 'Invalid email format' });
+    errors.push({field: 'email', message: 'Invalid email format'});
   }
 
   if (!data.password) {
-    errors.push({ field: 'password', message: 'Password is required' });
+    errors.push({field: 'password', message: 'Password is required'});
   } else if (!isValidPassword(data.password)) {
-    errors.push({ 
-      field: 'password', 
-      message: 'Password must be at least 6 characters' 
+    errors.push({
+      field: 'password',
+      message: 'Password must be at least 6 characters',
     });
   }
 

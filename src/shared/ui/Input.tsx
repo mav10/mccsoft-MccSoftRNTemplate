@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  TextInput,
-  TextInputProps,
-  View,
-  Text,
-  StyleSheet,
-  ViewStyle,
-} from 'react-native';
+import {TextInput, TextInputProps, View, Text, StyleSheet, ViewStyle} from 'react-native';
 import {useTheme} from '../theme/ThemeContext';
 
 interface InputProps extends TextInputProps {
@@ -15,22 +8,12 @@ interface InputProps extends TextInputProps {
   containerStyle?: ViewStyle;
 }
 
-export const Input = ({
-  label,
-  error,
-  containerStyle,
-  style,
-  ...rest
-}: InputProps) => {
+export const Input = ({label, error, containerStyle, style, ...rest}: InputProps) => {
   const theme = useTheme();
 
   return (
     <View style={[styles.container, containerStyle]}>
-      {label && (
-        <Text style={[styles.label, {color: theme.colors.textSecondary}]}>
-          {label}
-        </Text>
-      )}
+      {label && <Text style={[styles.label, {color: theme.colors.textSecondary}]}>{label}</Text>}
       <TextInput
         style={[
           styles.input,
@@ -44,9 +27,7 @@ export const Input = ({
         placeholderTextColor={theme.colors.textSecondary}
         {...rest}
       />
-      {error && (
-        <Text style={[styles.error, {color: theme.colors.error}]}>{error}</Text>
-      )}
+      {error && <Text style={[styles.error, {color: theme.colors.error}]}>{error}</Text>}
     </View>
   );
 };

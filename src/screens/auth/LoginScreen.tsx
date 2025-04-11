@@ -85,15 +85,10 @@ export default function LoginScreen({navigation}: Props) {
           error={errors.password}
         />
 
-        <Button
-          title={t('auth:loginButton')}
-          onPress={handleLogin}
-          loading={isLoading}
-          fullWidth
-        />
+        <Button title={t('auth:loginButton')} onPress={handleLogin} loading={isLoading} fullWidth />
 
         <View style={styles.languageSwitchContainer}>
-            <LanguageSwitch />
+          <LanguageSwitch />
         </View>
       </Card>
     </SafeAreaView>

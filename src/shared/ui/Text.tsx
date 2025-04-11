@@ -9,12 +9,7 @@ interface CustomTextProps extends TextProps {
   color?: 'primary' | 'secondary' | 'error';
 }
 
-export const Text = ({
-  variant = 'body',
-  color = 'primary',
-  style,
-  ...rest
-}: CustomTextProps) => {
+export const Text = ({variant = 'body', color = 'primary', style, ...rest}: CustomTextProps) => {
   const theme = useTheme();
 
   const getColor = () => {
@@ -28,12 +23,7 @@ export const Text = ({
     }
   };
 
-  return (
-    <RNText
-      style={[styles[variant], {color: getColor()}, style]}
-      {...rest}
-    />
-  );
+  return <RNText style={[styles[variant], {color: getColor()}, style]} {...rest} />;
 };
 
 const styles = StyleSheet.create({

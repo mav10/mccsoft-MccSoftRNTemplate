@@ -12,12 +12,8 @@ export default function ProfileScreen({route, navigation}: Props) {
 
   return (
     <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
-      <Text style={[styles.title, {color: theme.colors.text}]}>
-        Profile Screen
-      </Text>
-      <Text style={[styles.subtitle, {color: theme.colors.textSecondary}]}>
-        User ID: {userId}
-      </Text>
+      <Text style={[styles.title, {color: theme.colors.text}]}>Profile Screen</Text>
+      <Text style={[styles.subtitle, {color: theme.colors.textSecondary}]}>User ID: {userId}</Text>
     </View>
   );
 }

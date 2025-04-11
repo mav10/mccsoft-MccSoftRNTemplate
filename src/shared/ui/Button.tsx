@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Pressable,
-  Text,
-  StyleSheet,
-  PressableProps,
-  ActivityIndicator,
-} from 'react-native';
+import {Pressable, Text, StyleSheet, PressableProps, ActivityIndicator} from 'react-native';
 import {useTheme} from '../theme/ThemeContext';
 import {StyleProp, ViewStyle} from 'react-native';
 
@@ -19,15 +13,7 @@ interface ButtonProps extends PressableProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const Button = ({
-  title,
-  variant = 'primary',
-  loading,
-  fullWidth,
-  style,
-  disabled,
-  ...rest
-}: ButtonProps) => {
+export const Button = ({title, variant = 'primary', loading, fullWidth, style, disabled, ...rest}: ButtonProps) => {
   const theme = useTheme();
 
   const getBackgroundColor = () => {
@@ -56,7 +42,8 @@ export const Button = ({
         style as ViewStyle, // Fix type casting
       ]}
       disabled={disabled || loading}
-      {...rest}>
+      {...rest}
+    >
       {loading ? (
         <ActivityIndicator color="#FFFFFF" />
       ) : (

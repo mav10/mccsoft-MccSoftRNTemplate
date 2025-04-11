@@ -18,6 +18,6 @@ declare module 'i18next' {
     };
     returnNull: false;
     returnEmptyString: false;
-    interpolation: { escapeValue: false };
+    interpolation: {escapeValue: false};
   }
 }

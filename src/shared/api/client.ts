@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Config from 'react-native-config';
-import { store } from '../../store/store';
+import {store} from '../../store/store';
 
 export const apiClient = axios.create({
   baseURL: Config.API_URL,
@@ -11,22 +11,22 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(
-  (config) => {
+  config => {
     const token = store.getState().auth.token;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  error => Promise.reject(error),
 );
 
 apiClient.interceptors.response.use(
-  (response) => response,
-  async (error) => {
+  response => response,
+  async error => {
     if (error.response?.status === 401) {
-      store.dispatch({ type: 'auth/logout' });
+      store.dispatch({type: 'auth/logout'});
     }
     return Promise.reject(error);
-  }
+  },
 );

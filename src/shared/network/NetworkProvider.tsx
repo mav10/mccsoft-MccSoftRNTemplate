@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import NetInfo, { NetInfoState } from '@react-native-community/netinfo';
-import { useQueryClient } from '@tanstack/react-query';
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import NetInfo, {NetInfoState} from '@react-native-community/netinfo';
+import {useQueryClient} from '@tanstack/react-query';
 
 interface NetworkContextType {
   isConnected: boolean;
@@ -12,7 +12,7 @@ const NetworkContext = createContext<NetworkContextType>({
   isInternetReachable: true,
 });
 
-export const NetworkProvider = ({ children }: { children: React.ReactNode }) => {
+export const NetworkProvider = ({children}: {children: React.ReactNode}) => {
   const queryClient = useQueryClient();
   const [networkState, setNetworkState] = useState<NetworkContextType>({
     isConnected: true,
@@ -38,11 +38,7 @@ export const NetworkProvider = ({ children }: { children: React.ReactNode }) => 
     return () => unsubscribe();
   }, [networkState.isConnected, queryClient]);
 
-  return (
-    <NetworkContext.Provider value={networkState}>
-      {children}
-    </NetworkContext.Provider>
-  );
+  return <NetworkContext.Provider value={networkState}>{children}</NetworkContext.Provider>;
 };
 
 export const useNetwork = () => useContext(NetworkContext);

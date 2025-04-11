@@ -6,12 +6,7 @@ interface CardProps extends ViewProps {
   variant?: 'elevated' | 'outlined';
 }
 
-export const Card = ({
-  variant = 'elevated',
-  style,
-  children,
-  ...rest
-}: CardProps) => {
+export const Card = ({variant = 'elevated', style, children, ...rest}: CardProps) => {
   const theme = useTheme();
 
   return (
@@ -21,13 +16,14 @@ export const Card = ({
         {
           backgroundColor: theme.colors.surface,
           borderColor: variant === 'outlined' ? theme.colors.border : 'transparent',
-          ...variant === 'elevated' && {
+          ...(variant === 'elevated' && {
             shadowColor: theme.colors.shadow,
-          },
+          }),
         },
         style,
       ]}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </View>
   );

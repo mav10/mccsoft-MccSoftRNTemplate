@@ -1,4 +1,4 @@
-import { ThemeColors } from './types';
+import {ThemeColors} from './types';
 
 export const lightColors: ThemeColors = {
   primary: '#007AFF',

@@ -25,24 +25,20 @@ export const LanguageSwitch = () => {
           style={({pressed}) => [
             styles.button,
             {
-              backgroundColor:
-                currentLanguage === code
-                  ? theme.colors.primary
-                  : theme.colors.surface,
+              backgroundColor: currentLanguage === code ? theme.colors.primary : theme.colors.surface,
             },
             pressed && {opacity: 0.8},
           ]}
-          onPress={() => handleLanguageChange(code)}>
+          onPress={() => handleLanguageChange(code)}
+        >
           <Text
             style={[
               styles.text,
               {
-                color:
-                  currentLanguage === code
-                    ? '#FFFFFF'
-                    : theme.colors.textSecondary,
+                color: currentLanguage === code ? '#FFFFFF' : theme.colors.textSecondary,
               },
-            ]}>
+            ]}
+          >
             {label}
           </Text>
         </Pressable>

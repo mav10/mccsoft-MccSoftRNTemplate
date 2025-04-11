@@ -24,7 +24,8 @@ export function RootNavigator() {
       initialRouteName={isAuthenticated ? 'Home' : 'Login'}
       screenOptions={{
         headerBackTitle: 'Back',
-      }}>
+      }}
+    >
       {!isAuthenticated ? (
         <Stack.Group screenOptions={{headerShown: false}}>
           <Stack.Screen name="Login" component={LoginScreen} />

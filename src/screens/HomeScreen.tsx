@@ -24,30 +24,21 @@ export default function HomeScreen({navigation}: Props) {
   };
 
   return (
-    <View
-      style={[styles.container, {backgroundColor: theme.colors.background}]}>
-      <Text style={[styles.title, {color: theme.colors.text}]}>
-        {t('home:welcome', {appName: Config.APP_NAME})}
-      </Text>
+    <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      <Text style={[styles.title, {color: theme.colors.text}]}>{t('home:welcome', {appName: Config.APP_NAME})}</Text>
 
       <View style={styles.buttonContainer}>
         <Pressable
-          style={({pressed}) => [
-            styles.button,
-            {backgroundColor: theme.colors.primary},
-            pressed && {opacity: 0.8},
-          ]}
-          onPress={handleProfilePress}>
+          style={({pressed}) => [styles.button, {backgroundColor: theme.colors.primary}, pressed && {opacity: 0.8}]}
+          onPress={handleProfilePress}
+        >
           <Text style={styles.buttonText}>{t('home:profile')}</Text>
         </Pressable>
 
         <Pressable
-          style={({pressed}) => [
-            styles.button,
-            {backgroundColor: theme.colors.error},
-            pressed && {opacity: 0.8},
-          ]}
-          onPress={handleLogout}>
+          style={({pressed}) => [styles.button, {backgroundColor: theme.colors.error}, pressed && {opacity: 0.8}]}
+          onPress={handleLogout}
+        >
           <Text style={styles.buttonText}>{t('home:logout')}</Text>
         </Pressable>
       </View>
