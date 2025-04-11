@@ -14,6 +14,7 @@ import {Text} from '../../shared/ui/Text';
 import {validateLoginForm} from '../../shared/utils/validation';
 import {useAppDispatch} from '../../store/hooks';
 import {login} from '../../store/slices/authSlice';
+import {useModal} from '../../shared/modals/useModal.ts';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -25,6 +26,8 @@ export default function LoginScreen({}: Props) {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
+
+  const {showModal} = useModal();
 
   const handleLogin = async () => {
     const validationErrors = validateLoginForm({email, password});
@@ -84,8 +87,20 @@ export default function LoginScreen({}: Props) {
           error={errors.password}
         />
 
-        <Button title={t('auth:loginButton')} onPress={handleLogin} loading={isLoading} fullWidth />
-
+        <View style={styles.buttonBlock}>
+          <Button title={t('auth:loginButton')} onPress={handleLogin} loading={isLoading} fullWidth />
+          <Button
+            title={t('auth:details')}
+            fullWidth
+            variant={'secondary'}
+            onPress={() =>
+              showModal('confirm', {
+                title: 'Test',
+                onConfirm: () => console.log('confirmed'),
+              })
+            }
+          />
+        </View>
         <View style={styles.languageSwitchContainer}>
           <LanguageSwitch />
         </View>
@@ -106,6 +121,9 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     marginBottom: 32,
+  },
+  buttonBlock: {
+    gap: 12,
   },
   languageSwitchContainer: {
     position: 'absolute',

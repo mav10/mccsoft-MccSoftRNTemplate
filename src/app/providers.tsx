@@ -9,6 +9,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import {OfflineNotice} from '../shared/components/OfflineNotice';
 import {SyncIndicator} from '../shared/components/SyncIndicator';
+import {ModalProvider} from '../shared/modals/ModalProvider.tsx';
 import {NetworkProvider} from '../shared/network/NetworkProvider';
 import {ThemeProvider} from '../shared/theme/ThemeContext';
 import {persistor, store} from '../store/store';
@@ -38,9 +39,11 @@ export const ProvidersGate = ({children}: {children: React.ReactNode}) => {
             <QueryClientProvider client={queryClient}>
               <NetworkProvider>
                 <ThemeProvider>
-                  <OfflineNotice />
-                  <SyncIndicator />
-                  {children}
+                  <ModalProvider>
+                    <OfflineNotice />
+                    <SyncIndicator />
+                    {children}
+                  </ModalProvider>
                 </ThemeProvider>
               </NetworkProvider>
             </QueryClientProvider>
