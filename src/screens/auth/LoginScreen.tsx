@@ -1,30 +1,46 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Pressable, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Pressable,
+  Alert,
+} from 'react-native';
 import {useTheme} from '../../shared/theme/ThemeContext';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../navigation/RootNavigator';
 import {useAppDispatch} from '../../store/hooks';
 import {login} from '../../store/slices/authSlice';
-import {validateLoginForm, ValidationError} from '../../shared/utils/validation';
+import {validateLoginForm} from '../../shared/utils/validation';
+import {useTranslation} from 'react-i18next';
+import {LanguageSwitch} from '../../shared/components/LanguageSwitch';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 export default function LoginScreen({navigation}: Props) {
   const theme = useTheme();
   const dispatch = useAppDispatch();
+  const {t} = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
+  const {top} = useSafeAreaInsets();
+
   const handleLogin = async () => {
-    const validationErrors = validateLoginForm({ email, password });
-    
+    const validationErrors = validateLoginForm({email, password});
+
     if (validationErrors.length > 0) {
-      const newErrors = validationErrors.reduce((acc, error) => ({
-        ...acc,
-        [error.field]: error.message
-      }), {});
+      const newErrors = validationErrors.reduce(
+        (acc, error) => ({
+          ...acc,
+          [error.field]: error.message,
+        }),
+        {},
+      );
       setErrors(newErrors);
       return;
     }
@@ -34,20 +50,22 @@ export default function LoginScreen({navigation}: Props) {
       await new Promise(resolve => setTimeout(resolve, 1000));
       dispatch(login('user-123'));
     } catch (error) {
-      Alert.alert('Error', 'Failed to login. Please try again.');
+      Alert.alert(t('common:error'), t('auth:loginError'));
     } finally {
       setIsLoading(false);
     }
   };
 
-  const clearError = (field: string) => {
-    setErrors(prev => ({...prev, [field]: ''}));
-  };
-
   return (
-    <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
-      <Text style={[styles.title, {color: theme.colors.text}]}>Welcome Back</Text>
-      
+    <SafeAreaView
+      style={[styles.container, {backgroundColor: theme.colors.background}]}>
+      <Text style={[styles.title, {color: theme.colors.text}]}>
+        {t('auth:login')}
+      </Text>
+      <View style={[styles.languageSwitchContainer, {marginTop: top}]}>
+        <LanguageSwitch />
+      </View>
+
       <View style={styles.inputContainer}>
         <TextInput
           style={[
@@ -55,13 +73,15 @@ export default function LoginScreen({navigation}: Props) {
             {
               backgroundColor: theme.colors.surface,
               color: theme.colors.text,
-              borderColor: errors.email ? theme.colors.error : theme.colors.border,
+              borderColor: errors.email
+                ? theme.colors.error
+                : theme.colors.border,
             },
           ]}
-          placeholder="Email"
+          placeholder={t('auth:email')}
           placeholderTextColor={theme.colors.textSecondary}
           value={email}
-          onChangeText={(text) => {
+          onChangeText={text => {
             setEmail(text);
             setErrors(prev => ({...prev, email: ''}));
           }}
@@ -75,7 +95,7 @@ export default function LoginScreen({navigation}: Props) {
           </Text>
         ) : null}
       </View>
-      
+
       <View style={styles.inputContainer}>
         <TextInput
           style={[
@@ -83,13 +103,15 @@ export default function LoginScreen({navigation}: Props) {
             {
               backgroundColor: theme.colors.surface,
               color: theme.colors.text,
-              borderColor: errors.password ? theme.colors.error : theme.colors.border,
+              borderColor: errors.password
+                ? theme.colors.error
+                : theme.colors.border,
             },
           ]}
-          placeholder="Password"
+          placeholder={t('auth:password')}
           placeholderTextColor={theme.colors.textSecondary}
           value={password}
-          onChangeText={(text) => {
+          onChangeText={text => {
             setPassword(text);
             setErrors(prev => ({...prev, password: ''}));
           }}
@@ -102,7 +124,7 @@ export default function LoginScreen({navigation}: Props) {
           </Text>
         ) : null}
       </View>
-      
+
       <Pressable
         style={({pressed}) => [
           styles.button,
@@ -113,10 +135,10 @@ export default function LoginScreen({navigation}: Props) {
         onPress={handleLogin}
         disabled={isLoading}>
         <Text style={styles.buttonText}>
-          {isLoading ? 'Logging in...' : 'Login'}
+          {isLoading ? t('common:loading') : t('auth:loginButton')}
         </Text>
       </Pressable>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -158,5 +180,11 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '600',
+  },
+  languageSwitchContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: 1,
   },
 });

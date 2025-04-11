@@ -1,0 +1,21 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "offline": "No Internet Connection",
+    "syncing": "Syncing data..."
+  },
+  "auth": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "loginError": "Failed to login. Please try again."
+  },
+  "home": {
+    "welcome": "🚀 Welcome to {{appName}}",
+    "profile": "👤 Go to Profile",
+    "logout": "🚪 Logout"
+  }
+}

@@ -9,6 +9,7 @@ import {store, persistor} from '../store/store';
 import {NetworkProvider} from '../shared/network/NetworkProvider';
 import {OfflineNotice} from '../shared/components/OfflineNotice';
 import {SyncIndicator} from '../shared/components/SyncIndicator';
+import './i18n/localization.ts';
 
 const queryClient = new QueryClient({
   defaultOptions: {

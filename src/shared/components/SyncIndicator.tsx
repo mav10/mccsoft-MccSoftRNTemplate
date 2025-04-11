@@ -2,17 +2,19 @@ import React from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import {useTheme} from '../theme/ThemeContext';
 import {useIsFetching} from '@tanstack/react-query';
+import {useTranslation} from 'react-i18next';
 
 export const SyncIndicator = () => {
   const theme = useTheme();
   const isFetching = useIsFetching();
+  const {t} = useTranslation();
 
   if (!isFetching) return null;
 
   return (
     <View style={[styles.container, {backgroundColor: theme.colors.primary}]}>
       <ActivityIndicator size="small" color="#FFFFFF" />
-      <Text style={styles.text}>Syncing data...</Text>
+      <Text style={styles.text}>{t('common:syncing')}</Text>
     </View>
   );
 };
