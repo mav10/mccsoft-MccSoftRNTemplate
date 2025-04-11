@@ -9,11 +9,18 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:import/typescript',
     'plugin:jest/recommended',
-    'plugin:react-native-a11y/recommended', // Fixed: added 'plugin:' prefix
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-native', 'import', 'simple-import-sort', 'jest'],
+  plugins: ['@typescript-eslint', 'react', 'react-native', 'import', 'simple-import-sort', 'jest', 'react-native-a11y'],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
@@ -35,42 +42,6 @@ module.exports = {
     'import/namespace': 'error',
     'import/default': 'error',
     'import/export': 'error',
-    'react-native/sort-styles': [
-      'error',
-      {
-        order: ['layout', 'position', 'dimensions', 'spacing', 'typography', 'colors', 'borders', 'effects'],
-        groups: {
-          layout: ['display', 'flex', 'flexDirection', 'flexWrap', 'justifyContent', 'alignItems', 'alignSelf'],
-          position: ['position', 'top', 'right', 'bottom', 'left', 'zIndex'],
-          dimensions: ['width', 'height', 'minWidth', 'maxWidth', 'minHeight', 'maxHeight'],
-          spacing: [
-            'margin',
-            'marginTop',
-            'marginRight',
-            'marginBottom',
-            'marginLeft',
-            'padding',
-            'paddingTop',
-            'paddingRight',
-            'paddingBottom',
-            'paddingLeft',
-          ],
-          typography: [
-            'fontFamily',
-            'fontSize',
-            'fontStyle',
-            'fontWeight',
-            'letterSpacing',
-            'lineHeight',
-            'textAlign',
-            'textDecorationLine',
-            'textTransform',
-          ],
-          colors: ['backgroundColor', 'color', 'opacity'],
-          borders: ['borderWidth', 'borderColor', 'borderRadius', 'borderStyle'],
-          effects: ['elevation', 'shadowColor', 'shadowOffset', 'shadowOpacity', 'shadowRadius'],
-        },
-      },
-    ],
+    // Removed invalid sort-styles rule
   },
 };

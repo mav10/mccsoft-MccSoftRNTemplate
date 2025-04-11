@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {useTranslation} from 'react-i18next';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+
 import {useTheme} from '../theme/ThemeContext';
 
 const LANGUAGES = [
@@ -29,16 +30,14 @@ export const LanguageSwitch = () => {
             },
             pressed && {opacity: 0.8},
           ]}
-          onPress={() => handleLanguageChange(code)}
-        >
+          onPress={() => handleLanguageChange(code)}>
           <Text
             style={[
               styles.text,
               {
                 color: currentLanguage === code ? '#FFFFFF' : theme.colors.textSecondary,
               },
-            ]}
-          >
+            ]}>
             {label}
           </Text>
         </Pressable>

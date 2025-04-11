@@ -1,6 +1,6 @@
-import React, {createContext, useContext, useEffect, useState} from 'react';
 import NetInfo, {NetInfoState} from '@react-native-community/netinfo';
 import {useQueryClient} from '@tanstack/react-query';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 
 interface NetworkContextType {
   isConnected: boolean;

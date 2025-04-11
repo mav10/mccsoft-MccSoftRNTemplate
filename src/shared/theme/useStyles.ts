@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+
 import {useTheme} from './ThemeContext';
 
 export const useStyles = <T extends StyleSheet.NamedStyles<T>>(

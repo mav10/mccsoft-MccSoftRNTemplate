@@ -1,11 +1,12 @@
-import {View, Text, StyleSheet, Pressable} from 'react-native';
-import {useTheme} from '../shared/theme/ThemeContext';
-import {useTranslation} from 'react-i18next';
-import Config from 'react-native-config';
-import {logout} from '../store/slices/authSlice.ts';
-import {useAppDispatch, useAppSelector} from '../store/hooks.ts';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useTranslation} from 'react-i18next';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import Config from 'react-native-config';
+
 import {RootStackParamList} from '../navigation/RootNavigator.tsx';
+import {useTheme} from '../shared/theme/ThemeContext';
+import {useAppDispatch, useAppSelector} from '../store/hooks.ts';
+import {logout} from '../store/slices/authSlice.ts';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -30,15 +31,13 @@ export default function HomeScreen({navigation}: Props) {
       <View style={styles.buttonContainer}>
         <Pressable
           style={({pressed}) => [styles.button, {backgroundColor: theme.colors.primary}, pressed && {opacity: 0.8}]}
-          onPress={handleProfilePress}
-        >
+          onPress={handleProfilePress}>
           <Text style={styles.buttonText}>{t('home:profile')}</Text>
         </Pressable>
 
         <Pressable
           style={({pressed}) => [styles.button, {backgroundColor: theme.colors.error}, pressed && {opacity: 0.8}]}
-          onPress={handleLogout}
-        >
+          onPress={handleLogout}>
           <Text style={styles.buttonText}>{t('home:logout')}</Text>
         </Pressable>
       </View>

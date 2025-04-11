@@ -1,7 +1,8 @@
 import React, {createContext, useContext} from 'react';
 import {useColorScheme} from 'react-native';
+
 import {darkColors, lightColors} from './colors';
-import {spacing, fontSizes} from './metrics';
+import {fontSizes, spacing} from './metrics';
 import {Theme} from './types';
 
 const createTheme = (isDark: boolean): Theme => ({

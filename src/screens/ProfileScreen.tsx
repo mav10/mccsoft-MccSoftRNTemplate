@@ -1,12 +1,13 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {useTheme} from '../shared/theme/ThemeContext';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+
 import {RootStackParamList} from '../navigation/RootNavigator';
+import {useTheme} from '../shared/theme/ThemeContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
 
-export default function ProfileScreen({route, navigation}: Props) {
+export default function ProfileScreen({route}: Props) {
   const theme = useTheme();
   const {userId} = route.params;
 

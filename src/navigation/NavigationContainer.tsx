@@ -1,5 +1,6 @@
-import {NavigationContainer as RNNavigationContainer, DefaultTheme, DarkTheme} from '@react-navigation/native';
+import {DarkTheme, DefaultTheme, NavigationContainer as RNNavigationContainer} from '@react-navigation/native';
 import {useColorScheme} from 'react-native';
+
 import {RootNavigator} from './RootNavigator';
 
 export function NavigationContainer() {

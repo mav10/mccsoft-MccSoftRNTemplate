@@ -1,6 +1,7 @@
 import React from 'react';
-import {ProvidersGate} from './providers.tsx';
+
 import {NavigationContainer} from '../navigation/NavigationContainer.tsx';
+import {ProvidersGate} from './providers.tsx';
 
 const App = () => {
   return (

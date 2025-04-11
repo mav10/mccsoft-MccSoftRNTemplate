@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {Dimensions, StyleSheet, Text, View} from 'react-native';
+
 import {useNetwork} from '../network/NetworkProvider';
 import {useTheme} from '../theme/ThemeContext';
-import {useTranslation} from 'react-i18next';
 
 export const OfflineNotice = () => {
   const {isConnected} = useNetwork();

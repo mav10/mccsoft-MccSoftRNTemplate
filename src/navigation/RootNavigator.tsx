@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from '../screens/HomeScreen';
+
 import LoginScreen from '../screens/auth/LoginScreen';
+import HomeScreen from '../screens/HomeScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import {useAppSelector} from '../store/hooks';
@@ -24,8 +25,7 @@ export function RootNavigator() {
       initialRouteName={isAuthenticated ? 'Home' : 'Login'}
       screenOptions={{
         headerBackTitle: 'Back',
-      }}
-    >
+      }}>
       {!isAuthenticated ? (
         <Stack.Group screenOptions={{headerShown: false}}>
           <Stack.Screen name="Login" component={LoginScreen} />

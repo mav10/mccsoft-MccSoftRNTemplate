@@ -1,4 +1,5 @@
 import {AxiosError} from 'axios';
+
 import {ApiError} from './types';
 
 export class ApiRequestError extends Error {

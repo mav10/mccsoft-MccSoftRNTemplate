@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, ViewProps, StyleSheet, Platform} from 'react-native';
+import {Platform, StyleSheet, View, ViewProps} from 'react-native';
+
 import {useTheme} from '../theme/ThemeContext';
 
 interface CardProps extends ViewProps {
@@ -22,8 +23,7 @@ export const Card = ({variant = 'elevated', style, children, ...rest}: CardProps
         },
         style,
       ]}
-      {...rest}
-    >
+      {...rest}>
       {children}
     </View>
   );

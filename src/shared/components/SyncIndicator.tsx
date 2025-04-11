@@ -1,8 +1,9 @@
-import React from 'react';
-import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
-import {useTheme} from '../theme/ThemeContext';
 import {useIsFetching} from '@tanstack/react-query';
+import React from 'react';
 import {useTranslation} from 'react-i18next';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+
+import {useTheme} from '../theme/ThemeContext';
 
 export const SyncIndicator = () => {
   const theme = useTheme();

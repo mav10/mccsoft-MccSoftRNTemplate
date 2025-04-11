@@ -1,22 +1,23 @@
-import React, {useState} from 'react';
-import {Alert, StyleSheet, View} from 'react-native';
-import {useTheme} from '../../shared/theme/ThemeContext';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../navigation/RootNavigator';
-import {useAppDispatch} from '../../store/hooks';
-import {login} from '../../store/slices/authSlice';
-import {validateLoginForm} from '../../shared/utils/validation';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
+import {Alert, StyleSheet, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+
+import {RootStackParamList} from '../../navigation/RootNavigator';
 import {LanguageSwitch} from '../../shared/components/LanguageSwitch';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useTheme} from '../../shared/theme/ThemeContext';
 import {Button} from '../../shared/ui/Button';
+import {Card} from '../../shared/ui/Card';
 import {Input} from '../../shared/ui/Input';
 import {Text} from '../../shared/ui/Text';
-import {Card} from '../../shared/ui/Card';
+import {validateLoginForm} from '../../shared/utils/validation';
+import {useAppDispatch} from '../../store/hooks';
+import {login} from '../../store/slices/authSlice';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function LoginScreen({navigation}: Props) {
+export default function LoginScreen({}: Props) {
   const theme = useTheme();
   const dispatch = useAppDispatch();
   const {t} = useTranslation();
@@ -24,8 +25,6 @@ export default function LoginScreen({navigation}: Props) {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
-
-  const {top} = useSafeAreaInsets();
 
   const handleLogin = async () => {
     const validationErrors = validateLoginForm({email, password});
@@ -47,7 +46,7 @@ export default function LoginScreen({navigation}: Props) {
       await new Promise(resolve => setTimeout(resolve, 1000));
       dispatch(login('user-123'));
     } catch (error) {
-      Alert.alert(t('common:error'), t('auth:loginError'));
+      Alert.alert(t('common:error'), t('auth:loginError') + JSON.stringify(error));
     } finally {
       setIsLoading(false);
     }

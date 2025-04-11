@@ -1,7 +1,7 @@
 import React from 'react';
-import {Pressable, Text, StyleSheet, PressableProps, ActivityIndicator} from 'react-native';
+import {ActivityIndicator, Pressable, PressableProps, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
+
 import {useTheme} from '../theme/ThemeContext';
-import {StyleProp, ViewStyle} from 'react-native';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'error';
 
@@ -42,8 +42,7 @@ export const Button = ({title, variant = 'primary', loading, fullWidth, style, d
         style as ViewStyle, // Fix type casting
       ]}
       disabled={disabled || loading}
-      {...rest}
-    >
+      {...rest}>
       {loading ? (
         <ActivityIndicator color="#FFFFFF" />
       ) : (
