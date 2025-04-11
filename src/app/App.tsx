@@ -1,12 +1,13 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {Text} from 'react-native';
+import {ProvidersGate} from './providers.tsx';
 
 const App = () => {
-    return (
-        <SafeAreaView>
-            <Text>🚀 Welcome to MccSoftRNTemplate!</Text>
-        </SafeAreaView>
-    );
+  return (
+    <ProvidersGate>
+      <Text>🚀 Welcome to MccSoftRNTemplate!</Text>
+    </ProvidersGate>
+  );
 };
 
 export default App;
