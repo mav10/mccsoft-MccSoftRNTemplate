@@ -1,4 +1,5 @@
 export type ThemeColors = {
+  shadow: string;
   primary: string;
   secondary: string;
   background: string;

@@ -12,6 +12,7 @@ export const lightColors: ThemeColors = {
   success: '#34C759',
   warning: '#FF9500',
   info: '#5856D6',
+  shadow: '#000000',
 };
 
 export const darkColors: ThemeColors = {
@@ -26,4 +27,5 @@ export const darkColors: ThemeColors = {
   success: '#32D74B',
   warning: '#FF9F0A',
   info: '#5E5CE6',
+  shadow: '#fff',
 };
