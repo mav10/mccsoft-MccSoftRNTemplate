@@ -5,31 +5,37 @@ import HomeScreen from '../screens/HomeScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import {useAppSelector} from '../store/hooks';
+import {SplashScreen} from '../screens/SplashScreen';
+import {useState, useEffect} from 'react';
 
 export type RootStackParamList = {
+  Splash: undefined;
   Login: undefined;
   Home: undefined;
-  Profile: {
-    userId: string;
-  };
-  NotFound: undefined;
+  Profile: {userId: string};
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export function RootNavigator() {
-  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+export const RootNavigator = () => {
+  const isAuthenticated = useAppSelector(state => !!state.auth.userId);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initialization process
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
 
   return (
-    <Stack.Navigator
-      initialRouteName={isAuthenticated ? 'Home' : 'Login'}
-      screenOptions={{
-        headerBackTitle: 'Back',
-      }}>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       {!isAuthenticated ? (
-        <Stack.Group screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={LoginScreen} />
-        </Stack.Group>
+        <Stack.Screen name="Login" component={LoginScreen} />
       ) : (
         <Stack.Group>
           <Stack.Screen name="Home" component={HomeScreen} />
@@ -42,13 +48,6 @@ export function RootNavigator() {
           />
         </Stack.Group>
       )}
-      <Stack.Screen
-        name="NotFound"
-        component={NotFoundScreen}
-        options={{
-          title: 'Page Not Found',
-        }}
-      />
     </Stack.Navigator>
   );
-}
+};
