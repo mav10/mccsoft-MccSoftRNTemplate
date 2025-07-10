@@ -28,7 +28,7 @@ export const RootNavigator = () => {
     }, 2000);
   }, []);
 
-  if (isLoading) {
+  if (true) {
     return <SplashScreen />;
   }
 

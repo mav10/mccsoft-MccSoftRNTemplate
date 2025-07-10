@@ -7,14 +7,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {RootStackParamList} from '../../navigation/RootNavigator';
 import {LanguageSwitch} from '../../shared/components/LanguageSwitch';
 import {useTheme} from '../../shared/theme/ThemeContext';
-import {Button} from '../../shared/ui/Button';
-import {Card} from '../../shared/ui/Card';
-import {Input} from '../../shared/ui/Input';
-import {Text} from '../../shared/ui/Text';
 import {validateLoginForm} from '../../shared/utils/validation';
 import {useAppDispatch} from '../../store/hooks';
 import {login} from '../../store/slices/authSlice';
 import {useModal} from '../../shared/modals/useModal.ts';
+import {Button, Card, Input, Text} from '../../shared/ui';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {useTheme} from '../shared/theme/ThemeContext';
-import {Text} from '../shared/ui/Text';
+import { Text } from '../shared/ui';
 
 export const SplashScreen = () => {
   const theme = useTheme();

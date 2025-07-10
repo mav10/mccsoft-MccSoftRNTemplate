@@ -1,9 +1,10 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import {RootStackParamList} from '../navigation/RootNavigator';
 import {useTheme} from '../shared/theme/ThemeContext';
+import { Text } from '../shared/ui';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
 
