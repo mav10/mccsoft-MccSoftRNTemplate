@@ -2,7 +2,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import LoginScreen from '../screens/auth/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import {useAppSelector} from '../store/hooks';
 import {SplashScreen} from '../screens/SplashScreen';
@@ -28,7 +27,7 @@ export const RootNavigator = () => {
     }, 2000);
   }, []);
 
-  if (true) {
+  if (isLoading) {
     return <SplashScreen />;
   }
 
