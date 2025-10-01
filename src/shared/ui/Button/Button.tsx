@@ -1,7 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, Pressable, PressableProps, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
-
-import {useTheme} from '../theme/ThemeContext';
+import {useTheme} from '../../theme/ThemeContext';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'error';
 

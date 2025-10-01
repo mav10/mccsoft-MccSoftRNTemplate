@@ -1,12 +1,12 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useTranslation} from 'react-i18next';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, View} from 'react-native';
 import Config from 'react-native-config';
-
 import {RootStackParamList} from '../navigation/RootNavigator.tsx';
 import {useTheme} from '../shared/theme/ThemeContext';
 import {useAppDispatch, useAppSelector} from '../store/hooks.ts';
 import {logout} from '../store/slices/authSlice.ts';
+import {Text} from '../shared/ui';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 

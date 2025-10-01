@@ -9,6 +9,7 @@
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "react-native start",
+    "configure:android": "adb reverse tcp:8081 tcp:8081 && adb reverse tcp:8380 tcp:8380 && adb reverse tcp:5200 tcp:5200 && adb reverse tcp:8097 tcp:8097",
     "test": "jest"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "@tanstack/react-query": "^5.72.2",
     "axios": "^1.8.4",
     "i18next": "^24.2.3",
+    "lottie-react-native": "^7.2.4",
     "react": "19.0.0",
     "react-i18next": "^15.4.1",
     "react-native": "0.78.2",
